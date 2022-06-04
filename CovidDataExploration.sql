@@ -1,3 +1,4 @@
+--This was a guided project following Alex the Analyst's youtube video
 SELECT *
     FROM PortfolioProjectCovid19..CovidDeaths
     WHERE continent is not NULL
