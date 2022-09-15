@@ -1,44 +1,3 @@
---This changes the database to BikeStores
-USE BikeStores
-
---Viewing Tables
-SELECT
-	*
-FROM production.brands
-
-SELECT
-	*
-FROM production.categories
-
-SELECT
-	*
-FROM production.products
-
-SELECT
-	*
-FROM production.stocks
-
-SELECT
-	*
-FROM sales.customers
-
-SELECT
-	*
-FROM sales.order_items
-
-SELECT
-	*
-FROM sales.orders
-
-SELECT
-	*
-FROM sales.staffs
-
-SELECT
-	*
-FROM sales.stores
-
-
 --Find the stock for the bikes released in 2018
 SELECT 
 	prod.product_id,
@@ -194,25 +153,6 @@ ORDER BY
 
 --Use query with case statement that gives a rank to employees who sell above the companies sales goals
 USE BikeStores
-SELECT 
-	*
-FROM
-	sales.order_items
-
-SELECT
-	*
-FROM
-	sales.staffs
-
-SELECT
-	*
-FROM
-	sales.orders
-
-SELECT
-	*
-FROM
-	sales.stores
 
 SELECT 
 	STA.first_name + ' ' + STA.last_name AS 'Name',
@@ -221,10 +161,9 @@ SELECT
 	COUNT(ORD.order_id) AS 'Total_Orders',
 	CAST(ROUND(SUM(ORDI.list_price - (ORDI.list_price * ORDI.discount / 100)), 2) AS float) AS 'Total_Sales',
 	CASE
-		WHEN SUM(ORDI.list_price) >= 1500000 THEN 'Your Sales goal has been reached'
-		WHEN SUM(ORDI.list_price) <= 1499999 AND SUM(ORDI.list_price) >= 400000 THEN 'You have to make ' --find diff to reach sales goal
-		ELSE 'Your sales goals were not meant'
-	END AS 'Sales_Goal'
+		WHEN SUM(ORDI.list_price) >= 1000000 THEN 'Yes'
+		ELSE 'No'
+	END AS 'Sales_Goal_Meant'
 FROM
 	sales.stores STO
 JOIN
